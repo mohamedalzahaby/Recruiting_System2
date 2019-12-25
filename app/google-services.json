@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "306001815906",
+    "firebase_url": "https://recruiting-system-77cf4.firebaseio.com",
+    "project_id": "recruiting-system-77cf4",
+    "storage_bucket": "recruiting-system-77cf4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306001815906:android:34da95e71d4f507a59a43b",
+        "android_client_info": {
+          "package_name": "com.example.recruitingsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306001815906-ta6o2482cds59lamvt01jbuiddbh9oir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.recruitingsystem",
+            "certificate_hash": "186b0816f9369df02062a5b8fa2c2a791fceafa1"
+          }
+        },
+        {
+          "client_id": "306001815906-3342u4vkif6i1bb9qelfotkojnqrqlbu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7oqpRFsHs2AWa0F8HWmaFZe5OqyOLRZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306001815906-3342u4vkif6i1bb9qelfotkojnqrqlbu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
