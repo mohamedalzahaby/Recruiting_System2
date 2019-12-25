@@ -11,6 +11,7 @@ public class FragmentMap {
 
     public FragmentMap() {
 
+        //(R.id.od_elzorar   ,  R.layout.id_elfragment )
         this.viewFragmentMap.put(R.id.signin , R.layout.fragment_signin );
         this.viewFragmentMap.put(R.id.circle , R.layout.fragment_signup );
         this.viewFragmentMap.put(R.id.backTofirstPage1 , R.layout.fragment_first_page );
@@ -30,7 +31,8 @@ public class FragmentMap {
     }
 
 
-    public HashMap<Integer, Integer> getViewFragmentMap() {
+    public HashMap<Integer, Integer> getViewFragmentMap()
+    {
         return viewFragmentMap;
     }
 
