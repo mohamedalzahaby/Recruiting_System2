@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         boolean ismale = true;
         myRef = database.getReference("users");
 //fff
-
+//hello hazem
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
         {
             @Override
