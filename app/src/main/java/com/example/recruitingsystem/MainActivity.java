@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         boolean emailVerified = false;
         boolean ismale = true;
         myRef = database.getReference("users");
-
+//fff
 
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
         {
