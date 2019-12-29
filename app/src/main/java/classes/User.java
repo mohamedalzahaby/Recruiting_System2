@@ -67,6 +67,15 @@ public class User extends TimeStamps {
         this.ismale = ismale;
         this.universityCard = universityCard;
     }
+    public User(int userTypeId, String name, String email, boolean emailVerified, String password, boolean ismale) {
+
+        this.userTypeId = userTypeId;
+        this.name = name;
+        this.email = email;
+        this.emailVerified = emailVerified;
+        this.ismale = ismale;
+        this.universityCard = universityCard;
+    }
 
 
 

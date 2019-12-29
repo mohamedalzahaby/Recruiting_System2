@@ -18,6 +18,14 @@ public class TimeStamps {
         this.created_at = currentTimeStamp;
         this.updated_at = currentTimeStamp;
     }
+    public TimeStamps() {
+        SimpleDateFormat s = new SimpleDateFormat("ddMMyyyyhhmmss");
+        String currentTimeStamp = s.format(new Date());
+
+        this.isdeleted = 0;
+        this.created_at = currentTimeStamp;
+        this.updated_at = currentTimeStamp;
+    }
 
 
 

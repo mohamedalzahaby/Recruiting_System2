@@ -58,7 +58,7 @@
                 android:background="#ADCCE2" />
             <EditText
                 android:textSize="16dp"
-                android:id="@+id/mail"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -77,7 +77,7 @@
                 android:background="#ADCCE2" />
             <EditText
                 android:textSize="16dp"
-                android:id="@+id/usrusr"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
@@ -96,7 +96,7 @@
                 android:background="#ADCCE2" />
             <EditText
                 android:textSize="16dp"
-                android:id="@+id/pswrd"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
@@ -108,6 +108,33 @@
                 android:background="#0000"
                 android:padding="16dp"
                 android:layout_marginRight="35dp"/>
+            <RadioGroup
+                android:id="@+id/gender"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:background="#0000"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/male"
+                    android:textColor="#ADCCE2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:checked="true"
+                    />
+                <RadioButton
+                    android:id="@+id/female"
+                    android:textColor="#ADCCE2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_marginRight="35dp"
+                    android:text="Female"
+                    />
+            </RadioGroup>
             <View
                 android:layout_width="match_parent"
                 android:layout_marginLeft="40dp"
