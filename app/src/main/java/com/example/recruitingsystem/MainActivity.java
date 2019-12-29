@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText fname;
-    EditText email;
+    EditText myemail;
     EditText username;
-    EditText password;
+    EditText mypassword;
     RadioGroup gender;
 
 
@@ -59,10 +59,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fname = findViewById(R.id.fname);
-        email = findViewById(R.id.email);
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+
 //        gender = (RadioGroup) findViewById(R.id.gender);
 
         fragmentHashMap = new FragmentMap();
@@ -73,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
     // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-//        mAuth.signOut();
+        mAuth.signOut();
 
 //        DatabaseReference myRef = database.getReference("message");
 
@@ -83,6 +80,17 @@ public class MainActivity extends AppCompatActivity {
 
 //        AddForm();
 //        deleteForm();
+
+
+
+//        int userType = 2;
+//        String name = "mohamed";
+//
+////        String email = "mohamed1501643@miuegypt.edu.eg";
+//        String email = "mohamed1501643@miuegypt.edu.eg";
+//        String password = "mohamedazahaby123";
+//        boolean emailVerified = false;
+//        boolean ismale = true;
 
 
     }
@@ -164,106 +172,48 @@ public class MainActivity extends AppCompatActivity {
 
     public void signUp(View view)
     {
-
         Log.d(TAG, "signUp: 1");
-        gender = (RadioGroup) findViewById(R.id.gender);
-        int selectedId = gender.getCheckedRadioButtonId();
+        myemail = findViewById(R.id.emailSignUp);
+        mypassword = findViewById(R.id.password);
+        String email = myemail.getText().toString();
         Log.d(TAG, "signUp: 2");
-        // find the radiobutton by returned id
-        RadioButton genderBtn = (RadioButton) findViewById(selectedId);
+        String password = mypassword.getText().toString();
+        Log.d(TAG, "signUp: 3");
 
-        Toast.makeText(this, genderBtn.getText().toString(), Toast.LENGTH_SHORT).show();
-//        int userType = 1;
-//        String name = "mohamed";
-////        String email = "mohamed1501643@miuegypt.edu.eg";
-//        String email = "mohamed1501643@miuegypt.edu.eg";
-//        String password = "mohamedazahaby123";
-//        boolean emailVerified = false;
-//        boolean ismale = true;
+        myRef = database.getReference("users");
+
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful())
+                {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "createUserWithEmail:success");
+                    FirebaseUser user = mAuth.getCurrentUser();
+
+                    sendVerificationEmail(user);
+//                            updateUI(user);
+                    if (user.isEmailVerified()){
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+//                                Intent intent = new Intent(MainActivity.this , HomeActivity);
+                    }
+                    else{
+                        startActivity(new Intent(MainActivity.this, VerificationActivity.class));
+                    }
+                }
+                else
+                {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                    Toast.makeText(MainActivity.this, "Authentication failed.",Toast.LENGTH_SHORT).show();
+//                            updateUI(null);
+                }
+
+            }
+        });
+        mAuth.signOut();
 
 
-
-//        myRef = database.getReference("users");
-//
-//
-//        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful())
-//                        {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            Log.d(TAG, "createUserWithEmail:success");
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//
-//                            sendVerificationEmail(user);
-////                            updateUI(user);
-//                            if (user.isEmailVerified())
-//                            {
-//                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
-////                                Intent intent = new Intent(MainActivity.this , HomeActivity);
-//                            }
-//                            else
-//                            {
-//                                startActivity(new Intent(MainActivity.this, VerificationActivity.class));
-////                                int layoutFragment = R.layout.
-//
-////                                fragment = new MainFragment();
-////                                fragment.setFragment(R.layout.fragment_email_verification);
-////                                Toast.makeText(MainActivity.this, ""+fragment.getFragment(), Toast.LENGTH_SHORT).show();
-////                                FragmentManager fm = getSupportFragmentManager();
-////                                FragmentTransaction ft = fm.beginTransaction();
-////                                ft.replace(R.id.fragment1,fragment);
-////                                ft.commit();
-//                            }
-//                        }
-//                        else
-//                        {
-//                            // If sign in fails, display a message to the user.
-//                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-//                            Toast.makeText(MainActivity.this, "Authentication failed.",Toast.LENGTH_SHORT).show();
-////                            updateUI(null);
-//                        }
-//
-//                    }
-//        });
-//        mAuth.signOut();
-//
-////        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-////            @Override
-////            public void onComplete(@NonNull Task<AuthResult> task) {
-////                if (task.isSuccessful())
-////                {
-////                    FirebaseUser user = auth.getCurrentUser();
-////                    user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>()
-////                    {
-////                        @Override
-////                        public void onComplete(@NonNull Task<Void> task) {
-////
-////                            if (task.isSuccessful())
-////                            {
-////                                Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_LONG).show();
-////                                String uid = auth.getCurrentUser().getUid();
-////                                User mohamed = new User(uid,1,"mohamed","mohamedazahaby@gmail.com",false,"hello", true);
-////                                myRef.child(uid).setValue(mohamed);
-////                                Toast.makeText(getApplicationContext(), "mohamed Registered", Toast.LENGTH_LONG).show();
-////                            }
-////                            else
-////                            {
-////                                Log.i("Success", "No");
-////                            }
-////                        }
-////                    });
-////
-////                }
-////                else
-////                {
-////                    Toast.makeText(getApplicationContext(), "Registration Failed", Toast.LENGTH_LONG).show();
-////                }
-////            }
-////        });
-////        auth.signOut();
-//
-//
 
 
 
@@ -300,14 +250,25 @@ public class MainActivity extends AppCompatActivity {
 ////                            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
 //                            finish();
 
+                            fname = findViewById(R.id.fname);
+                            username = findViewById(R.id.username);
+                            mypassword = findViewById(R.id.password);
 
                             String uid = mAuth.getCurrentUser().getUid();
-                            String name = "mohamed";
-                            int userTypeId = 1;
-                            String email = "mohamedazahaby@gmail.com";
-                            boolean emailVerified = false;
-                            String password = "hello";
+                            gender = (RadioGroup) findViewById(R.id.gender);
+                            int selectedId = gender.getCheckedRadioButtonId();
+
+                            // find the radiobutton by returned id
+                            RadioButton genderBtn = (RadioButton) findViewById(selectedId);
+                            int userTypeId = 2;
                             boolean ismale = true;
+                            if (genderBtn.getText().toString().equals("Female")) {
+                                ismale = false;
+                            }
+                            String name = fname.getText().toString();
+                            String email = myemail.getText().toString();
+                            String password = mypassword.getText().toString();
+                            boolean emailVerified = false;
 
                             User mohamed = new User(uid, userTypeId, name, email, emailVerified, password, ismale);
                             myRef.child(uid).setValue(mohamed);
@@ -351,9 +312,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-
-
 
     public void readForm()
     {
@@ -430,8 +388,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
     public void AddForm()
     {
 //        String id = dataSnapshot.child("id").toString();

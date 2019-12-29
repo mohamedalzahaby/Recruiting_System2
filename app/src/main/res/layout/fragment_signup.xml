@@ -40,6 +40,7 @@
             <EditText
                 android:textSize="16dp"
                 android:id="@+id/fname"
+                android:text="mohamed alzahaby"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Fullname"
@@ -58,7 +59,8 @@
                 android:background="#ADCCE2" />
             <EditText
                 android:textSize="16dp"
-                android:id="@+id/email"
+                android:id="@+id/emailSignUp"
+                android:text="mohamed1501643@miuegypt.edu.eg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -78,6 +80,7 @@
             <EditText
                 android:textSize="16dp"
                 android:id="@+id/username"
+                android:text="mohamedazahaby"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
@@ -105,6 +108,7 @@
                 android:inputType="textPassword"
                 android:maxLength="12"
                 android:textColor="#ADCCE2"
+                android:text="Mohamedazahaby123"
                 android:background="#0000"
                 android:padding="16dp"
                 android:layout_marginRight="35dp"/>
