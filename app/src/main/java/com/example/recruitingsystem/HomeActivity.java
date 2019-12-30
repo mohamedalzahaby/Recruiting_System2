@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +45,19 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+
+
+
+
+        FloatingActionButton fab = findViewById(R.id.fab_Form);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
         fragmentHashMap = new FragmentMap();
         fragmentMap = fragmentHashMap.getViewFragmentMap();
 //        FragmentClassMap = new HashMap<Integer , Integer>();
@@ -65,6 +80,11 @@ public class HomeActivity extends AppCompatActivity {
     //        FragmentTransaction ft = fm.beginTransaction();
     //        ft.replace(R.id.fragment2,mainFragment);
     //        ft.commit();
+    }
+
+    public void fab(View view) {
+        Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
 
