@@ -42,12 +42,13 @@ public class MainActivity extends AppCompatActivity {
     HashMap<Integer , Integer>  fragmentMap;
     HashMap<Integer , Integer>  FragmentClassMap;
 
+    RadioGroup gender ;
 
     EditText fname;
     EditText myemail;
     EditText username;
     EditText mypassword;
-    RadioGroup gender;
+
 
 
     FirebaseDatabase database;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         mAuth.signOut();
+
 
 //        DatabaseReference myRef = database.getReference("message");
 
@@ -110,6 +112,17 @@ public class MainActivity extends AppCompatActivity {
 //        int layoutFragment = R.layout.id_elfragment
         Log.d(TAG, "viewMainFragment: start");
         int layoutFragment = fragmentMap.get(view.getId());
+        fragment = new MainFragment();
+        fragment.setFragment(layoutFragment);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment1,fragment);
+        ft.commit();
+        Log.d(TAG, "viewMainFragment: start");
+    }
+
+    public void viewMainFragmentbyid(int layoutFragment)
+    {
         fragment = new MainFragment();
         fragment.setFragment(layoutFragment);
         FragmentManager fm = getSupportFragmentManager();
@@ -173,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
     public void signUp(View view)
     {
         Log.d(TAG, "signUp: 1");
+
         myemail = findViewById(R.id.emailSignUp);
         mypassword = findViewById(R.id.password);
         String email = myemail.getText().toString();
@@ -191,14 +205,16 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "createUserWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
 
-                    sendVerificationEmail(user);
+                    sendVerificationEmail(user );
 //                            updateUI(user);
                     if (user.isEmailVerified()){
                         startActivity(new Intent(MainActivity.this, HomeActivity.class));
 //                                Intent intent = new Intent(MainActivity.this , HomeActivity);
                     }
                     else{
-                        startActivity(new Intent(MainActivity.this, VerificationActivity.class));
+//                        startActivity(new Intent(MainActivity.this, VerificationActivity.class));
+                        viewMainFragmentbyid(R.layout.fragment_first_page);
+                        Toast.makeText(MainActivity.this, "check your verification mail", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else
@@ -233,15 +249,22 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void sendVerificationEmail(FirebaseUser user)
+    private void sendVerificationEmail(FirebaseUser user )
     {
+        gender = (RadioGroup) findViewById(R.id.gender);
+        int selectedId = gender.getCheckedRadioButtonId();
+        final RadioButton genderBtn = (RadioButton) findViewById(selectedId);
+        fname = findViewById(R.id.fname);
+        username = findViewById(R.id.username);
+        mypassword = findViewById(R.id.password);
 //        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         user.sendEmailVerification()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful())
+                        {
 //                            // email sent
 //
 //
@@ -250,21 +273,18 @@ public class MainActivity extends AppCompatActivity {
 ////                            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
 //                            finish();
 
-                            fname = findViewById(R.id.fname);
-                            username = findViewById(R.id.username);
-                            mypassword = findViewById(R.id.password);
 
                             String uid = mAuth.getCurrentUser().getUid();
-                            gender = (RadioGroup) findViewById(R.id.gender);
-                            int selectedId = gender.getCheckedRadioButtonId();
 
                             // find the radiobutton by returned id
-                            RadioButton genderBtn = (RadioButton) findViewById(selectedId);
+//                            RadioGroup gender = (RadioGroup) findViewById(R.id.gender);
+//                            RadioButton genderBtn = (RadioButton) findViewById(selectedId);
                             int userTypeId = 2;
                             boolean ismale = true;
                             if (genderBtn.getText().toString().equals("Female")) {
                                 ismale = false;
                             }
+//                            fname = findViewById(R.id.)
                             String name = fname.getText().toString();
                             String email = myemail.getText().toString();
                             String password = mypassword.getText().toString();
