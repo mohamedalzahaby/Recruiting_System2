@@ -106,7 +106,7 @@
                 android:textColorHint="#ADCCE2"
                 android:layout_marginLeft="22dp"
                 android:inputType="textPassword"
-                android:maxLength="12"
+                android:maxLength="20"
                 android:textColor="#ADCCE2"
                 android:text="Mohamedazahaby123"
                 android:background="#0000"

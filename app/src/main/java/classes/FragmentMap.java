@@ -11,11 +11,16 @@ public class FragmentMap {
 
     public FragmentMap() {
 
-        //(R.id.od_elzorar   ,  R.layout.id_elfragment )
+        /* TODO: (R.id.od_elzorar   ,  R.layout.id_elfragment ) */
+
+        //Main activity buttons
         this.viewFragmentMap.put(R.id.signin , R.layout.fragment_signin );
         this.viewFragmentMap.put(R.id.circle , R.layout.fragment_signup );
         this.viewFragmentMap.put(R.id.backTofirstPage1 , R.layout.fragment_first_page );
         this.viewFragmentMap.put(R.id.backTofirstPage2 , R.layout.fragment_first_page );
+
+        //Home activity buttons
+        this.viewFragmentMap.put(R.id.btnForm , R.layout.fragment_form );
 
 
         this.FragmentClassMap.put(R.layout.fragment_signin , "signin");

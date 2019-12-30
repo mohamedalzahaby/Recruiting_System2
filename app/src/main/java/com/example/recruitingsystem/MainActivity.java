@@ -1,6 +1,7 @@
 package com.example.recruitingsystem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -8,6 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,16 +45,11 @@ public class MainActivity extends AppCompatActivity {
     MainFragment fragment;
     HashMap<Integer , Integer>  fragmentMap;
     HashMap<Integer , Integer>  FragmentClassMap;
-
     RadioGroup gender ;
-
     EditText fname;
     EditText myemail;
     EditText username;
     EditText mypassword;
-
-
-
     FirebaseDatabase database;
     DatabaseReference myRef;
     private FirebaseAuth mAuth;
@@ -71,7 +70,11 @@ public class MainActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
     // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        mAuth.signOut();
+//        mAuth.signOut();
+
+
+        ActionBar actionBar =getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
 
 //        DatabaseReference myRef = database.getReference("message");
@@ -99,11 +102,36 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.signout:
+                //Write your code
+                mAuth.signOut();
+                viewMainFragmentbyid(R.layout.fragment_first_page);
+                Toast.makeText(this, "Signed out", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    @Override
     public void onStart () {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        if(currentUser != null){
+            startActivity(new Intent(this,HomeActivity.class));
+            Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
+        }
     }
 
 
@@ -137,16 +165,21 @@ public class MainActivity extends AppCompatActivity {
         Button btn_signin = findViewById(R.id.sin);
 //        EditText email = findViewById(R.id.usrusr);
 //        EditText password = findViewById(R.id.pswrd);
-        String email = "mohamedazahaby@gmail.com";
-        String password = "mohamedazahaby123";
+        String email = "mohamed1501643@miuegypt.edu.eg";
+        String password = "Mohamedazahaby123";
+
+//        Toast.makeText(this, email +" "+password, Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "login: email: " +email +" password: "+password);
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
         {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
+                if(task.isSuccessful())
+                {
                     mAuth.getCurrentUser().reload();
                     FirebaseUser user = mAuth.getCurrentUser();
-                    if (user.isEmailVerified()) {
+                    if (user.isEmailVerified())
+                    {
                         final String user_id=user.getUid();
                         myRef= database.getReference().child("users").child(user_id);
                         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -170,10 +203,12 @@ public class MainActivity extends AppCompatActivity {
                         //System.out.println("logged in");
                     }
                     else {
-                        Toast.makeText(getApplicationContext(),"Check your email first...",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Verify your email first...",Toast.LENGTH_LONG).show();
                         //System.out.println("Check email");
                     }
-                }else {
+                }
+                else
+                {
                     Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
                 }
             }
