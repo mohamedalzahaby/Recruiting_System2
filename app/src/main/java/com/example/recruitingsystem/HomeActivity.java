@@ -48,6 +48,11 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+// Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
 
 
         FloatingActionButton fab = findViewById(R.id.fab_Form);
@@ -80,6 +85,8 @@ public class HomeActivity extends AppCompatActivity {
     //        FragmentTransaction ft = fm.beginTransaction();
     //        ft.replace(R.id.fragment2,mainFragment);
     //        ft.commit();
+
+//        AddForm();
     }
 
     public void fab(View view) {
@@ -138,7 +145,7 @@ public class HomeActivity extends AppCompatActivity {
 //        String creatorId = dataSnapshot.child("creatorId").toString();
 //        String departmentId = dataSnapshot.child("departmentId").toString();
 
-        String name = "first form";
+        String name = "assasasas    ";
         String creatorId = "creatorId";
         String departmentId = "departmentId";
         ArrayList<Question> questions = new ArrayList<>();

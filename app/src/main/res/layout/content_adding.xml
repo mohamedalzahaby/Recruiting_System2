@@ -40,7 +40,7 @@
             android:layout_marginLeft="30dp" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/committee_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

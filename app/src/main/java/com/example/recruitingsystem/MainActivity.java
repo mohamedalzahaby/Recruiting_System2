@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 //        boolean emailVerified = false;
 //        boolean ismale = true;
 
-
+//        AddForm();
     }
 
 

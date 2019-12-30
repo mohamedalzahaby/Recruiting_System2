@@ -13,6 +13,11 @@ public class Question extends TimeStamps {
         this.creatorId = creatorId;
         this.formId = formId;
     }
+    public Question(String name, String dataType, String creatorId) {
+        this.name = name;
+        this.dataType = dataType;
+        this.creatorId = creatorId;
+    }
 
     public String getDataType() {
         return dataType;
