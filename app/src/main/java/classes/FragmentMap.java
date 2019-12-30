@@ -19,14 +19,21 @@ public class FragmentMap {
         this.viewFragmentMap.put(R.id.backTofirstPage1 , R.layout.fragment_first_page );
         this.viewFragmentMap.put(R.id.backTofirstPage2 , R.layout.fragment_first_page );
 
-        //Home activity buttons
-        this.viewFragmentMap.put(R.id.btnForm , R.layout.fragment_form );
-
-
+        //arrayList used in case u want to get layout names
         this.FragmentClassMap.put(R.layout.fragment_signin , "signin");
         this.FragmentClassMap.put(R.layout.fragment_signup , "signup");
         this.FragmentClassMap.put(R.layout.fragment_first_page , "fragment_first_page");
         this.FragmentClassMap.put(R.layout.fragment_first_page , "sign");
+
+
+
+
+        //Home activity buttons
+        this.viewFragmentMap.put(R.id.btnForm , R.layout.fragment_form );
+
+
+        //arrayList used in case u want to get layout names
+        this.FragmentClassMap.put(R.layout.fragment_form , "fragment_form");
 
     }
 

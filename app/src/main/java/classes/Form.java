@@ -12,18 +12,17 @@ public class Form extends TimeStamps {
     protected ArrayList<Question> questions = new ArrayList<>();
 
 
-    public Form(String id, String name, String creatorId, String departmentId , ArrayList<Question> questions) {
-        super(id);
-        this.name = name;
-        this.creatorId = creatorId;
-        this.departmentId = departmentId;
-        this.questions = questions;
-    }
     public Form(String name, String creatorId, String departmentId , ArrayList<Question> questions) {
         this.name = name;
         this.creatorId = creatorId;
         this.departmentId = departmentId;
         this.questions = questions;
+    }
+    public Form(String id, String name, String creatorId, String departmentId) {
+        super(id);
+        this.name = name;
+        this.creatorId = creatorId;
+        this.departmentId = departmentId;
     }
 
     public Form(DataSnapshot dataSnapshot) {

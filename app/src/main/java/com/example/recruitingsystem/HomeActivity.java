@@ -44,6 +44,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         fragmentHashMap = new FragmentMap();
+        fragmentMap = fragmentHashMap.getViewFragmentMap();
+//        FragmentClassMap = new HashMap<Integer , Integer>();
 
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -101,7 +103,7 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment2,fragment);
         ft.commit();
-        Log.d(TAG, "viewMainFragment: start");
+        Log.d(TAG, "viewMainFragment: end");
     }
 
 
