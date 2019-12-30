@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment1,fragment);
         ft.commit();
-        Log.d(TAG, "viewMainFragment: start");
+        Log.d(TAG, "viewMainFragment: end");
     }
 
     public void viewMainFragmentbyid(int layoutFragment)

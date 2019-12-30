@@ -83,8 +83,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void fab(View view) {
-        Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        startActivity(new Intent(this,AddingActivity.class));
+//        Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
     }
 
 

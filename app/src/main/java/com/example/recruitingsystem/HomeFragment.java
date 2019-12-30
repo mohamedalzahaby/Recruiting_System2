@@ -40,9 +40,4 @@ public class HomeFragment extends Fragment {
 
     }
 
-//    public void mywatashiwahello(View view)
-//    {
-////        if (this.fragment)
-//        Toast.makeText(getContext(), "watashiwaaaaaaaaaaaaaaa", Toast.LENGTH_SHORT).show();
-//    }
 }
