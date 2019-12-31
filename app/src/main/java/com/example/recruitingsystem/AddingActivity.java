@@ -1,11 +1,14 @@
 package com.example.recruitingsystem;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-
+import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -13,17 +16,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
-
 import Adapters.QuestionAdapter;
+import classes.Form;
+import classes.Question;
 
-public class AddingActivity extends AppCompatActivity {
+public class AddingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private EditText question_Edtext;
     ArrayList<String> questions;
@@ -45,35 +46,47 @@ public class AddingActivity extends AppCompatActivity {
 
 
 
-
         question_Edtext = findViewById(R.id.question_Edtext);
         questions = new ArrayList<>();
         adapter = new QuestionAdapter(questions);
         recyclerView = (RecyclerView) findViewById(R.id.rvQuestions);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-
         ActionBar actionBar = getSupportActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+
+
+        // Spinner element
+        committee_spinner = findViewById(R.id.committee_spinner);
+
+        // Spinner click listener
+        committee_spinner.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        ArrayList<String> categories = new ArrayList<String>();
+        categories.add("HR");
+        categories.add("PR");
+        categories.add("FR");
+        categories.add("Marketing");
+
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        committee_spinner.setAdapter(dataAdapter);
+
     }
 
 
@@ -95,70 +108,52 @@ public class AddingActivity extends AppCompatActivity {
 
 
 
-
-
     }
+
 
 
     public void submitForm(View view)
     {
-        AddForm();
-//        formName = findViewById(R.id.formName);
-//        committee_spinner = findViewById(R.id.committee_spinner);
-//
-//        String name = formName.getText().toString();
-//        String creatorId = mAuth.getCurrentUser().getUid();
-//        String departmentId = "departmentId";
-//        String dataType = "text";
-//
-//        ArrayList<Question> questionObjects = new ArrayList<>();
-//
-//        for (int i = 0; i < adapter.getItemCount(); i++) {
-//            String questionScript = adapter.getQuestions().get(i);
-//            questionObjects.add(new Question(questionScript , dataType , creatorId ));
-//        }
-//
-//        Form form = new Form(name , creatorId , departmentId , questionObjects);
-//        myRef= database.getReference().child("forms");
-//        Log.d(TAG, "submitForm: "+myRef);
-//        myRef.setValue(form);
-//
-////        startActivity(new Intent(this,HomeActivity.class));
-//        Toast.makeText(this, "Added Successfully", Toast.LENGTH_SHORT).show();
-    }
+        formName = findViewById(R.id.formName);
 
-    public void AddForm()
-    {
+        String name = formName.getText().toString();
+        mAuth.getCurrentUser().reload();
+        String creatorId = mAuth.getCurrentUser().getUid();
+        String departmentId = "departmentId";
+        String dataType = "text";
+        ArrayList<Question> questionObjects = new ArrayList<>();
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        for (int i = 0; i < adapter.getItemCount(); i++) {
+            String questionScript = adapter.getQuestions().get(i);
+            questionObjects.add(new Question(questionScript , dataType , creatorId ));
+        }
 
-        myRef.setValue("Hello, World!");
+        Form form = new Form(name , creatorId , departmentId , questionObjects);
+        myRef= database.getReference().child("forms");
+        myRef.push().setValue(form);
 
-//        Log.d(TAG, "AddForm: start");
-//        database = FirebaseDatabase.getInstance();
-//        mAuth = FirebaseAuth.getInstance();
-//        String name = "first form";
-//        String creatorId = "creatorId";
-//        String departmentId = "departmentId";
-//        ArrayList<Question> questions = new ArrayList<>();
-//        String formId = "formId";;
-//        String questionScript = "how are you?";
-//        String dataType = "text";
-//        questions.add(new Question(questionScript , dataType , creatorId , formId));
-//        questions.add(new Question(questionScript , dataType , creatorId , formId));
-//        questions.add(new Question(questionScript , dataType , creatorId , formId));
-//
-//
-//        myRef= database.getReference();
-//        myRef.setValue(new Form("second Form" , creatorId , departmentId , questions));
-//        myRef.push().setValue(new Form("third Form" , creatorId , departmentId , questions));
-//        myRef.push().setValue(new Form("hellllllll Form", creatorId , departmentId , questions));
-//        myRef.push().setValue(new Form("fifth Form" , creatorId , departmentId , questions));
-//
-//        Log.d(TAG, "AddForm: end");
+        startActivity(new Intent(this,HomeActivity.class));
+        Toast.makeText(this, "Added Successfully", Toast.LENGTH_SHORT).show();
     }
 
 
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        // On selecting a spinner item
+        String item = adapterView.getItemAtPosition(i).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        // On selecting a spinner item
+        String item = adapterView.getItemAtPosition(0).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+
+    }
 }

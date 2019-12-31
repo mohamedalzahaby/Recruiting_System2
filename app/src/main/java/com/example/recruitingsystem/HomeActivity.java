@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import classes.Form;
 import classes.FragmentMap;
@@ -39,20 +40,13 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseDatabase database;
     private FirebaseAuth mAuth;
     private FragmentMap fragmentHashMap;
+    ArrayList<DataSnapshot> forms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
-
-
-// Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");
 
 
         FloatingActionButton fab = findViewById(R.id.fab_Form);
@@ -87,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
     //        ft.commit();
 
 //        AddForm();
+//        readForm();
     }
 
     public void fab(View view) {
@@ -138,13 +133,14 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+
+
+
+
+
     public void AddForm()
     {
-//        String id = dataSnapshot.child("id").toString();
-//        String name = dataSnapshot.child("name").toString();
-//        String creatorId = dataSnapshot.child("creatorId").toString();
-//        String departmentId = dataSnapshot.child("departmentId").toString();
-
         String name = "assasasas    ";
         String creatorId = "creatorId";
         String departmentId = "departmentId";
@@ -166,6 +162,29 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+    public void readAllForm()
+    {
+        myRef= database.getReference().child("forms");
+
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    forms.add(postSnapshot);
+                }
+                Toast.makeText(HomeActivity.this, "Failed to read value.", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Toast.makeText(HomeActivity.this, "Failed to read value.", Toast.LENGTH_SHORT).show();
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
     public void readForm()
     {
         final String formName = "first form";
@@ -180,6 +199,8 @@ public class HomeActivity extends AppCompatActivity {
 //                String value = dataSnapshot.getKey();
 //                String value = dataSnapshot.getRef().push().getKey();
                 String table = "name";
+//                Log.d(TAG, "onDataChange: valueeeee= "+dataSnapshot.child(table).getValue(String.class));
+
                 String name = dataSnapshot.child(table).getValue().toString();
                 if(name.equals(formName)){
                     Toast.makeText(HomeActivity.this, "hello" , Toast.LENGTH_LONG).show();
@@ -241,7 +262,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+//
+//    public void Register(View view)
+//    {
+//        RegisterApplicant registerApplicant = new RegisterApplicant();
+//        registerApplicant.Register(view);
+//    }
 
 
-
+    public void gotoRegisterApplicant(View view) {
+        Intent intent=new Intent(this,RegisterApplicant.class);
+        startActivity( intent);
+    }
 }

@@ -18,6 +18,13 @@ public class Form extends TimeStamps {
         this.departmentId = departmentId;
         this.questions = questions;
     }
+    public Form(String id,String name, String creatorId, String departmentId , ArrayList<Question> questions) {
+        super(id);
+        this.name = name;
+        this.creatorId = creatorId;
+        this.departmentId = departmentId;
+        this.questions = questions;
+    }
     public Form(String id, String name, String creatorId, String departmentId) {
         super(id);
         this.name = name;

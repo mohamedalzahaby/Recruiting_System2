@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SendMail">
+
+    <EditText
+        android:id="@+id/mailSender"
+        android:layout_width="match_parent"
+        android:inputType="textEmailAddress"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_horizontal"
+        android:hint="From: camelia@gmail.com"
+        android:textColorHint="@android:color/black"
+        android:autoSizeTextType="uniform"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/mailSubject"
+        android:inputType="textEmailSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_horizontal"
+        android:hint="Subject: Interview Time"
+        android:textColorHint="@android:color/black"
+        android:autoSizeTextType="uniform"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mailSender"/>
+
+    <Button
+        android:id="@+id/sendMail_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send Mail"
+        android:autoSizeTextType="uniform"
+        android:layout_marginTop="12dp"
+        android:onClick="sendMail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mailSubject"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

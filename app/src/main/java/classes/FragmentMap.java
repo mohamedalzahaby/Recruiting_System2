@@ -30,6 +30,7 @@ public class FragmentMap {
 
         //Home activity buttons
         this.viewFragmentMap.put(R.id.btnForm , R.layout.fragment_form );
+        this.viewFragmentMap.put(R.id.button3 , R.layout.activity_register_applicant );
 
 
         //arrayList used in case u want to get layout names

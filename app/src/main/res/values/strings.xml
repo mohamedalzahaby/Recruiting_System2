@@ -4,4 +4,41 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_adding">AddingActivity</string>
+    <string name="spinner_title">title</string>
+    <array name="Committee">
+        <item>AC Member</item>
+        <item>HR Member</item>
+        <item>PR Member</item>
+        <item>EP Member</item>
+        <item>Media Member</item>
+        <item>Social Media Member</item>
+        <item>Fund Raising Member</item>
+    </array>
+
+    <array name="Faculty">
+        <item>CSC</item>
+        <item>ECE</item>
+        <item>Alsun</item>
+        <item>BUS</item>
+        <item>Arch</item>
+        <item>Den</item>
+        <item>Pharma</item>
+        <item>MassCom</item>
+    </array>
+
+    <array name="Address">
+        <item>Nasr City</item>
+        <item>Maadi</item>
+        <item>New Cairo</item>
+        <item>Heliopolis</item>
+        <item>Oubor</item>
+        <item>Rehab</item>
+        <item>Madinaty</item>
+        <item>Shubra</item>
+        <item>Zamalek</item>
+        <item>6th October</item>
+        <item>Mohandesin</item>
+        <item>Agouza</item>
+    </array>
+
 </resources>

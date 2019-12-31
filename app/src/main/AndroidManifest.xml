@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        <activity android:name=".AddMember"></activity>
+        <activity android:name=".SendMail" />
+        <activity android:name=".RegisterApplicant" />
         <activity
             android:name=".AddingActivity"
             android:label="@string/title_activity_adding"
-            android:theme="@style/NoActionBar"></activity>
-        <activity android:name=".VerificationActivity" />
+            android:theme="@style/NoActionBar" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
