@@ -82,6 +82,14 @@ public class HomeActivity extends AppCompatActivity {
 
 //        AddForm();
 //        readForm();
+
+        int layoutFragment = R.layout.fragment_form;
+        fragment = new MainFragment();
+        fragment.setFragment(layoutFragment);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment2,fragment);
+        ft.commit();
     }
 
     public void fab(View view) {
@@ -118,7 +126,7 @@ public class HomeActivity extends AppCompatActivity {
     public void viewMainFragment(View view)
     {
 //        int layoutFragment = R.layout.id_elfragment
-        Log.d(TAG, "viewMainFragment: start");
+
         int layoutFragment = fragmentMap.get(view.getId());
         fragment = new MainFragment();
         fragment.setFragment(layoutFragment);
@@ -126,7 +134,7 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment2,fragment);
         ft.commit();
-        Log.d(TAG, "viewMainFragment: end");
+
     }
 
 
@@ -271,6 +279,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
     public void gotoRegisterApplicant(View view) {
+        Intent intent=new Intent(this,RegisterApplicant.class);
+        startActivity( intent);
+    }
+
+    public void goto_addMember(View view)
+    {
         Intent intent=new Intent(this,RegisterApplicant.class);
         startActivity( intent);
     }

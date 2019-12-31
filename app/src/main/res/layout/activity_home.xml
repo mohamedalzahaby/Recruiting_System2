@@ -8,32 +8,50 @@
     tools:context=".HomeActivity">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="viewMainFragment"
-            android:text="members" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnForm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="viewMainFragment"
-            android:text="form" />
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="gotoRegisterApplicant"
-            android:text="applicants" />
+    <Button
+
+        android:id="@+id/btnForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#ADCCE2"
+        android:onClick="viewMainFragment"
+        android:text="Form"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="25sp"
+        android:textStyle="italic" />
+
+    <Button
+
+        android:id="@+id/addmember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="goto_addMember"
+        android:text="add Member"
+        android:textSize="25sp"
+        android:textStyle="italic"
+        android:textColor="@android:color/holo_blue_dark"
+        android:background="#ADCCE2"
+        />
+</LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"/>
+
 
     </LinearLayout>
 

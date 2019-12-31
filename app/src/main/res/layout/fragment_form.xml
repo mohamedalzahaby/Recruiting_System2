@@ -21,7 +21,7 @@ tools:context=".HomeActivity">
             android:layout_margin="20dp"
             android:clickable="true"
             android:onClick="fab"
-            app:srcCompat="@drawable/angle2" />
+            app:srcCompat="@drawable/whiteplus" />
 
 
 </FrameLayout>

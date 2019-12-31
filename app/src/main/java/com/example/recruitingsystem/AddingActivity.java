@@ -144,7 +144,7 @@ public class AddingActivity extends AppCompatActivity implements AdapterView.OnI
         String item = adapterView.getItemAtPosition(i).toString();
 
         // Showing selected spinner item
-        Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+//        Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -153,7 +153,7 @@ public class AddingActivity extends AppCompatActivity implements AdapterView.OnI
         String item = adapterView.getItemAtPosition(0).toString();
 
         // Showing selected spinner item
-        Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+//        Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 
     }
 }

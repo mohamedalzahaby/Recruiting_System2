@@ -98,13 +98,17 @@ public class MainFragment extends Fragment {
         Form f3 = new Form("3", "FR form", creatorId, departmentId);
         Form f4 = new Form("4", "marketing form", creatorId, departmentId);
         Form f5 = new Form("5", "Design form", creatorId, departmentId);
-        Form f6 = new Form("6", "programming form", creatorId, departmentId);
+        Form f6 = new Form("6", "AC form", creatorId, departmentId);
+        Form f7 = new Form("6", "Media form", creatorId, departmentId);
+        Form f8 = new Form("6", "Social Media form", creatorId, departmentId);
         forms.add(f1);
         forms.add(f2);
         forms.add(f3);
         forms.add(f4);
         forms.add(f5);
         forms.add(f6);
+        forms.add(f7);
+        forms.add(f8);
 //        forms.add(new Form(id, name, creatorId, departmentId));
 //        forms.add(new Form("2", "second form", creatorId, departmentId));
 //        forms.add(new Form("3", "third form", creatorId, departmentId));
